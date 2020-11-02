@@ -16,7 +16,7 @@ router.get("/users", restrict(), async (req, res, next) => {
 
 router.post("/register", async (req, res, next) => {
   try {
-    const { username, password, department_id } = req.body
+    const { username, password, department } = req.body
     const user = await Users.findByUsername(username)
 
     if (user) {
@@ -28,7 +28,7 @@ router.post("/register", async (req, res, next) => {
     const newUser = await Users.add({
       username,
       password: await bcrypt.hash(password, 14),
-      department_id,
+      department,
     })
 
     res.status(201).json(newUser)

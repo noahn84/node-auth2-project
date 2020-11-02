@@ -7,26 +7,26 @@ async function add(user) {
 
 function find() {
   return db("users as u")
-    .innerJoin("departments as d", "d.id", "u.department_id")
+    .innerJoin("departments as d", "d.name", "u.department")
     .select("u.id", "u.username", "d.name as department")
 }
 
 function findByDepartment() {
   return db("users as u")
-    .innerJoin("departments as d", "d.id", "u.department_id")
+    .innerJoin("departments as d", "d.name", "u.department")
     .select("u.id", "u.username", "d.name as department")
 }
 
 function findById(id) {
   return db("users as u")
     .where("u.id", id)
-    .innerJoin("departments as d", "d.id", "u.department_id")
+    .innerJoin("departments as d", "d.name", "u.department")
     .select("u.id", "u.username", "d.name as department")
 }
 
 function findByUsername(username) {
   return db("users as u")
-    .innerJoin("departments as d", "d.id", "u.department_id")
+    .innerJoin("departments as d", "d.name", "u.department")
     .where("u.username", username)
     .first("u.id", "u.username", "u.password", "d.name as department")
 }
